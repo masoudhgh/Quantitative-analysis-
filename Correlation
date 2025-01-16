@@ -1,0 +1,49 @@
+
+
+install.packages("PerformanceAnalytics")
+
+library(PerformanceAnalytics)  
+data <- read.csv("F:/Vaezi/Sel.csv")   
+
+head (data)
+>Genotype  DHE    DMA      PLH       SPL     AWNL      PEDL       GS  TGW    Yield
+>G103 87.3 124.75 129.9833 11.833333 10.83333 19.583333 24.55000 50.5 4805.312
+>G55 86.8 120.50 102.9000  5.666667 11.91667 12.833333 34.55000 50.0 4518.854
+>Fardan.CV 84.9 121.90 117.9000  8.166667 11.76667 10.600000 25.40000 48.2 4050.000
+>G63 86.8 123.50 122.5667  5.333333 12.91667 12.833333 41.21667 48.0 6477.188
+>G33 87.3 121.25 108.6500  7.833333 11.41667 12.583333 57.80000 47.5 7105.833
+>G84 85.8 116.75 103.1500  4.666667 12.91667  9.583333 37.96667 47.5 5420.417
+> 
+
+variables <- data[, c("DHE", "DMA", "PLH", "SPL", "AWNL", "PEDL", "GS", "TGW", "Yield")]  
+
+head(variables) 
+chart.Correlation(variables)
+--------------------------
+
+install.packages("psych")
+library(psych)
+ pairs.panels(variables)
+
+
+install.packages("corrplot")
+library(corrplot)
+x <- cor(variables)
+corrplot(x, type="upper", order="hclust")
+-----------------------
+library(corrplot)
+
+corrplot(cor(variables),
+  method = "number",
+  type = "upper" # show only upper side
+)
+-------------------------
+corrplot2(  
+  data = variables,  
+  method = "pearson",  
+  sig.level = 0.05,  
+  order = "original",  
+  diag = FALSE,  
+  type = "upper",  
+  tl.srt = 75  
+)
