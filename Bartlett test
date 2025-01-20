@@ -18,3 +18,20 @@ head(data, 3)
 1  -23.04 
 
 bartlett.test(Y ~ factor(E), data = data)
+
+
+---------------------------
+Another methodes (disply chart)
+
+data <- read.csv("F:/Namdari/Tot.csv")  
+
+head(data, 3)  
+
+data$spray <- factor(data$E) 
+
+require(graphics)  
+plot(Y ~ spray, data = data)  
+
+bartlett.test(Y ~ spray, data = data)
+
+
