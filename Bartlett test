@@ -1,0 +1,20 @@
+# make resitual as data in following format
+  E       Y
+1 -329.38
+1 -122.38
+1  -23.04
+library(ggplot2)
+library(MASS)
+library(mvtnorm)
+
+data <- read.csv("F:/Namdari/Tot.csv")  
+
+# make resitual as data in following format #(E envirement, re =residual)
+
+head(data, 3) 
+  E       re
+1 -329.38
+1 -122.38
+1  -23.04 
+
+bartlett.test(Y ~ factor(E), data = data)
